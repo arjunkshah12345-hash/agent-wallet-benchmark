@@ -1,0 +1,120 @@
+{
+  "name": "treg (Treg, by Superdesign)",
+  "url": "https://treg.to",
+  "tagline": "OpenRouter, but for agent tools instead of models. One base URL and one token; search the catalog by job, read the price, call it.",
+  "status_notes": "Official domain is treg.to (GitHub repo homepage field, README 'live at treg.to', llms.txt). treg.dev is an unrelated personal Hugo blog titled 'T-Reg'. treg.ai is a GoDaddy parked domain that redirects to /lander. Neither is official. Live and shipping daily: v0.27.0, last commit 2026-10-27. Launched on Product Hunt 2026-08-17 (daily rank 7, weekly rank 34, launch-day score 147, 10 comments). Built by Superdesign (superdesign.dev); contact jason@superdesign.dev. The site now advertises 4,000+ endpoints across 114 providers. The 2,600/2,630 endpoints across 40/47 providers figures in third-party write-ups are stale August-2026 launch numbers; USAGE.md in the repo still says '~2,600 ... ~40'. Paused providers on 2026-10-27: Datagma and Google Business Profile. A referral program gives $5 to the referrer and $5 to the referred (from /meta). Funding is not confirmed: EveryDev lists founder Jason Zhou and about $250k raised, with no investors named.",
+  "founded": null,
+  "backers": null,
+  "catalog": {
+    "tools": 3935,
+    "providers": 114,
+    "as_of": "2026-10-27",
+    "source": "Unique tool ids summed across public GET https://treg.to/catalog/providers/{service} for all 114 providers listed by GET https://treg.to/catalog/platforms. Summing the 113 platform 'endpoints' counts gives 3,548. Marketing copy says '4,000+ endpoints · 114 providers'. The total includes treg.* routed tools and OAuth 'own account' tools such as Google Analytics, Google Tag Manager and Search Console that need your own connection. Repo definition: one YAML file per provider in src/treg/catalog/*.yaml (about 140 YAML files including *.extended.yaml), plus 2,520 example-response JSON files in src/treg/catalog/examples/ covering 97 providers."
+  },
+  "categories": ["Social (33 platforms: TikTok, Douyin, Instagram, YouTube, X, LinkedIn, Reddit...)", "E-commerce", "SEO/AEO (keywords, SERP, backlinks, AI visibility)", "Reviews & Apps", "Advertising (ad management and ad libraries)", "Community", "Research & public data", "AI generation (image, video, voice)", "Enrichment (people and company, email and phone find/verify)", "Market data", "Developer", "Web scraping and search"],
+  "pricing": {
+    "markup_pct": 0,
+    "platform_fee": "None on calls ('provider rate + $0.000 markup'). Optional paid monthly Enterprise SSO / Directory Sync plans exist, priced through Stripe.",
+    "per_call_min_usd": 0.0001,
+    "free_credit_usd": 1.0,
+    "subscription": false,
+    "failed_calls_billed": false,
+    "notes": "Prepaid balance, metered per call at the provider's own rate and shown before the call; no seats, no monthly minimum. Per-success tools charge $0 on a miss, but per-call tools bill misses. Routed treg.* waterfall tools can bill misses and quote usd_per_call: null. A 4xx or 5xx relayed from the provider is free. A provider failure inside a 2xx (for example a DataForSEO task error) is billed at whatever the provider charged. Async generation tasks reserve the price and refund it all if the task fails. An empty balance returns HTTP 402 insufficient_balance with balance_micro, estimated_cost_micro and topup_url. Endpoints with no published price are refused. The $1 credit is described both as 'new teams' (pricing page) and 'once per new verified account, when they create an eligible team' (README). Terms say credit is non-cash and non-refundable. Optional automatic top-ups. Lowest listed rate is '<$0.0001/result' (Open web & SEO). BYOK and own-tool calls are never metered."
+  },
+  "payment_rails": ["Prepaid balance topped up by card through Stripe (inferred from terms 'card you haven't saved' and Stripe config in README; no crypto, x402 or stablecoin rail found)"],
+  "access": {
+    "remote_mcp": true,
+    "mcp_url": "https://treg.to/mcp/ (bearer or OAuth). A curated Claude Connectors Directory surface is at https://treg.to/mcp/v2/",
+    "cli": true,
+    "cli_package": "curl -fsSL https://treg.to/install.sh | sh; PyPI 'tools-registry' (CLI only; [server] extra for the server); npm '@superdesign/treg' launcher; Claude Code plugin '/plugin marketplace add superdesigndev/treg'",
+    "rest_api": true,
+    "sdks": ["No language SDKs; plain HTTP (OpenAPI at /docs/api), CLI, MCP", "npm treg-dsh (DeepSeek harness plugin)", "skills via 'npx skills add superdesigndev/treg'"],
+    "skill_md": true,
+    "llms_txt": true
+  },
+  "byo_provider_accounts": true,
+  "spend_controls": {
+    "per_agent_caps": true,
+    "tool_allowlist": true,
+    "approval_flows": false,
+    "revocable_keys": true,
+    "notes": "Per-call ceiling via the X-Treg-Route-Max-Cost header (routed tools default to $1 per call; direct calls have no default). Daily spend caps per tag dimension (for example customer or workspace) via PUT /orgs/{id}/budgets/{dim}/{val} with daily_cap_micro and status:blocked. Up to 3 dimensions; limits stack; docs warn caps are 'advisory, not exact' under concurrency. Per-member daily_call_cap and tool_access allow-list (agents are org members, with per-agent tokens). Deny rules and CLI-deny policy. API key spend endpoint and disable/revoke for API keys, agents, connections and tokens. Roles: owner, admin, member, viewer. No human-in-the-loop approval flow found; the skill tells agents to 'call at the listed price without asking'."
+  },
+  "quote_before_call": true,
+  "receipts_audit_log": true,
+  "idempotency": true,
+  "open_source": {
+    "is_oss": false,
+    "license": "Source-available: Apache-2.0 plus 'Additional Terms' that take precedence. Additional Terms bar offering it as a hosted, managed or embedded service to third parties without written authorization, and grant the licensor commercial rights to contributions. GitHub reports NOASSERTION. The site says '100% open source · Apache 2.0', which is misleading. opensourcealternatives.to calls it fair-code, like n8n's Sustainable Use License.",
+    "repo": "https://github.com/superdesigndev/treg",
+    "stars": 6387,
+    "last_commit": "2026-10-27T12:58:43Z"
+  },
+  "self_host": true,
+  "setup_steps_to_first_call": [
+    "curl -fsSL https://treg.to/install.sh | sh (installs CLI and skills; or add https://treg.to/mcp/ as a custom connector in ChatGPT or claude.ai with OAuth)",
+    "treg login (GitHub, Google or emailed code; creates account and team, $1 credit)",
+    "treg catalog search \"<job>\" then treg catalog get <id> (both public, no token)",
+    "treg call <id> --query key=value (or GET https://treg.to/call/<id>?k=v with header X-Treg-Token)"
+  ],
+  "public_endpoints_probed": [
+    {"url": "https://treg.to/meta", "method": "GET", "status": 200, "notes": "JSON: treg_version 0.27.0, auth providers, paused_providers (datagma, google-business-profile), referral {referrer_micro:5000000, referred_micro:5000000}"},
+    {"url": "https://treg.to/catalog/platforms", "method": "GET", "status": 200, "notes": "JSON {platforms[113], providers{114}, generated_from:'catalog'}; each platform has slug, label, category, summary, endpoints (count), verified, price_from {type, value, currency, unit, source, source_url}, capabilities, providers. Endpoint counts sum to 3,548."},
+    {"url": "https://treg.to/catalog/providers/{service} (all 114)", "method": "GET", "status": 200, "notes": "JSON {provider{service, display_name, limits, pricing_url, docs}, platforms[{slug, label, tools[{id, ...}]}]}; 3,935 unique tool ids total. Largest: tikhub 924, justoneapi 271, dataforseo 241."},
+    {"url": "https://treg.to/catalog/search?q=backlinks%20for%20a%20domain", "method": "GET", "status": 200, "notes": "JSON {query, count:25, total:42, results[], hints[]}; results carry id, provider, kind (e.g. routed), method, path, call_template, cost {type, value, currency, unit, source, confidence, checked}. An empty q returns total 0."},
+    {"url": "https://treg.to/catalog/find?q=find%20a%20work%20email", "method": "GET", "status": 200, "notes": "application/x-ndjson stream; first event 'candidates' listing matching ids per provider"},
+    {"url": "https://treg.to/catalog/endpoints/hunter.people.email.find", "method": "GET", "status": 200, "notes": "JSON endpoint detail (~26KB): params, price, example response"},
+    {"url": "https://treg.to/health", "method": "GET", "status": 401, "notes": "{detail:'not authenticated'}"},
+    {"url": "https://treg.to/llms.txt", "method": "GET", "status": 200, "notes": "Agent onboarding doc (text/plain)"},
+    {"url": "https://treg.to/skill.md", "method": "GET", "status": 200, "notes": "Operating guide for agents (26.7KB)"},
+    {"url": "https://treg.to/llms-full.txt", "method": "GET", "status": 404, "notes": "not found"},
+    {"url": "https://treg.to/sitemap.xml", "method": "GET", "status": 200, "notes": "580 URLs: 377 /catalog pages, 114 /tools pages, 48 use-cases"}
+  ],
+  "strengths": [
+    "Largest checked public catalog in this niche: about 3.9k endpoints across 114 providers, strong in SEO, social scraping (TikTok/Douyin/Instagram/X), enrichment, ads and gen-media",
+    "0% markup, prepaid, no subscription; price quoted per tool with its source and when it was checked; failed provider calls are free; per-success billing on many tools",
+    "Public unauthenticated catalog API (search, find, get, platforms, providers) and crawlable catalog pages",
+    "BYO keys, OAuth connections, CLIs and SKILL.md registered as team tools; credentials injected server-side and never metered",
+    "Many ways in: remote MCP with OAuth, CLI, raw HTTP proxy (/call/<upstream URL>), llms.txt and skill.md, Claude Code plugin",
+    "Idempotency-Key with 24h replay, X-Treg-Cost-Micro cost header, append-only ledger, call audit log, routed treg.* waterfall tools with fallback",
+    "Per-customer tagging, budgets and invoicing for resellers, explicitly allowed without a special agreement",
+    "Self-hostable Python/FastAPI (SQLite or Postgres); very active (6.4k stars, 547 forks, daily commits)"
+  ],
+  "weaknesses": [
+    "License is not OSI open source (Apache-2.0 plus a hosted-service restriction), while the site markets it as '100% open source · Apache 2.0'",
+    "Spend caps are advisory and can be exceeded under concurrency; no human approval flow; the agent is told to spend at the listed price without asking",
+    "Card-only prepaid rail; no agent-native payment rails (x402 or stablecoin)",
+    "Catalog skews to GTM/SEO/social data, with a long tail from aggregators (tikhub alone is 924 endpoints); counts include OAuth 'own account' tools that need your own connection",
+    "Inconsistent numbers across surfaces (2,600/40 in USAGE.md and third-party posts vs 4,000+/114 on the site); some providers paused",
+    "Misses are billed on per-call tools and on routed waterfall tools; provider failures inside a 2xx are billed",
+    "All payloads pass through treg's proxy (data-residency and retention questions); unclear backing and company details; CLI telemetry to PostHog is on by default"
+  ],
+  "sources": [
+    {"claim": "Official homepage treg.to; repo stars, forks, language, topics, license NOASSERTION", "url": "https://api.github.com/repos/superdesigndev/treg"},
+    {"claim": "Last commit 2026-10-27 (PR #1220)", "url": "https://github.com/superdesigndev/treg/commits/main"},
+    {"claim": "treg.dev is an unrelated personal blog 'T-Reg'", "url": "https://treg.dev/"},
+    {"claim": "treg.ai is a GoDaddy parked domain (redirects to /lander)", "url": "https://treg.ai/lander"},
+    {"claim": "Tagline, 4,000+ tools / 114 providers, MCP URL and tool list, setup flow, $1 credit, X-Treg-Route-Max-Cost, X-Treg-Cost-Micro, reselling allowed", "url": "https://treg.to/llms.txt"},
+    {"claim": "0% markup, $1 free, no subscription, BYOK never metered, per-success misses $0, per-call misses billed, example rates", "url": "https://treg.to/pricing"},
+    {"claim": "Homepage claims '100% open source · Apache 2.0', 4,000+ endpoints, 114 providers", "url": "https://treg.to/"},
+    {"claim": "License: Apache-2.0 with Additional Terms restricting hosted/managed service", "url": "https://github.com/superdesigndev/treg/blob/main/LICENSE"},
+    {"claim": "Self-hosting, SQLite/Postgres, Fernet key, credential ladder, 402 insufficient_balance, Claude plugin, MCP v2 connector, PyPI tools-registry, telemetry", "url": "https://github.com/superdesigndev/treg/blob/main/README.md"},
+    {"claim": "USAGE.md still says ~2,600 endpoints across ~40 providers", "url": "https://github.com/superdesigndev/treg/blob/main/USAGE.md"},
+    {"claim": "Catalog defined as per-provider YAML in src/treg/catalog", "url": "https://github.com/superdesigndev/treg/tree/main/src/treg/catalog"},
+    {"claim": "Failed calls free, provider failures inside a 2xx billed, Idempotency-Key 24h replay, async reserve and refund", "url": "https://treg.to/skill.md"},
+    {"claim": "Per-tag daily budgets, blocking, advisory caps, ledger-based invoicing", "url": "https://treg.to/integrate.md"},
+    {"claim": "Per-member tool allow-list, daily_call_cap, local_run_enabled", "url": "https://treg.to/tutorial-access.md"},
+    {"claim": "API routes: catalog routes need no token; agents create/revoke, api-keys spend/disable, budgets, deny rules", "url": "https://treg.to/docs"},
+    {"claim": "Credit non-refundable, prepaid, optional auto top-ups, card", "url": "https://treg.to/terms"},
+    {"claim": "Live catalog counts: 113 platforms, 114 providers", "url": "https://treg.to/catalog/platforms"},
+    {"claim": "3,935 unique tool ids across 114 providers", "url": "https://treg.to/catalog/providers/hunter"},
+    {"claim": "Referral $5/$5, paused providers, version 0.27.0", "url": "https://treg.to/meta"},
+    {"claim": "npm launcher @superdesign/treg", "url": "https://github.com/superdesigndev/treg/blob/main/packages/npm/package.json"},
+    {"claim": "PyPI tools-registry 0.27.0", "url": "https://pypi.org/project/tools-registry/"},
+    {"claim": "Product Hunt launch 2026-08-17, '2,600 APIs, 0% markup', daily rank 7, weekly rank 34", "url": "https://www.producthunt.com/products/treg-openrouter-for-tools?launch=treg"},
+    {"claim": "ChatGate (Aug 17 2026): 2,630 endpoints across 47 providers; 'does not silently choose a vendor or fail over' (now outdated by routed treg.* tools)", "url": "https://chatgate.ai/en/post/treg"},
+    {"claim": "opensourcealternatives.to: fair-code, compared to n8n SUL; 'alternative to Composio and Toolhouse'; 2,630/47 figures", "url": "https://www.opensourcealternatives.to/item/treg"},
+    {"claim": "Founder Jason Zhou; about $250k raised (third-party, unverified)", "url": "https://www.everydev.ai/developers/superdesign"},
+    {"claim": "eesel.ai review notes inconsistent license labels (AGPL in footer vs Apache+restrictions)", "url": "https://www.eesel.ai/de/blog/treg-test"}
+  ]
+}

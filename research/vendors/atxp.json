@@ -1,0 +1,121 @@
+{
+ "name": "ATXP (Circuit & Chisel)",
+ "url": "https://atxp.ai/",
+ "tagline": "Agent Transaction Protocol: self-registering funded agent accounts (wallet + email) with pay-per-call MCP tools and an LLM gateway",
+ "status_notes": "Active. Also ships consumer apps (atxp.chat, atxp.music, atxp.pics, atxp.video beta, clowd.bot). Catalog is a small first-party set of MCP tools rather than a broad aggregator.",
+ "founded": null,
+ "backers": "$19.2M seed (Sept 2025) co-led by Primary Venture Partners and ParaFi Capital; Stripe, Coinbase Ventures, Solana Ventures, Samsung Next, Polygon Labs",
+ "catalog": {
+  "tools": 9,
+  "providers": null,
+  "as_of": "2026-10-27",
+  "source": "https://docs.atxp.ai/tools"
+ },
+ "categories": [
+  "crawl",
+  "web search",
+  "X live search",
+  "email",
+  "filestore",
+  "image",
+  "music",
+  "video",
+  "code sandbox",
+  "LLM gateway",
+  "x402 payments"
+ ],
+ "pricing": {
+  "markup_pct": null,
+  "platform_fee": null,
+  "per_call_min_usd": null,
+  "free_credit_usd": 5,
+  "subscription": "none ('Free to create. No subscription.')",
+  "failed_calls_billed": null,
+  "notes": "Per-tool prices not published on docs tool pages reviewed."
+ },
+ "payment_rails": [
+  "ATXP account credits",
+  "Base",
+  "Solana",
+  "Polygon",
+  "Worldchain"
+ ],
+ "access": {
+  "remote_mcp": true,
+  "mcp_url": "https://search.mcp.atxp.ai/ (per-tool servers)",
+  "cli": true,
+  "cli_package": "atxp (npx atxp)",
+  "rest_api": true,
+  "sdks": [
+   "typescript"
+  ],
+  "skill_md": true,
+  "llms_txt": true
+ },
+ "byo_provider_accounts": false,
+ "spend_controls": {
+  "per_agent_caps": null,
+  "tool_allowlist": null,
+  "approval_flows": null,
+  "revocable_keys": null,
+  "notes": "No spend controls documented in agent or tool docs reviewed."
+ },
+ "quote_before_call": null,
+ "receipts_audit_log": true,
+ "idempotency": null,
+ "open_source": {
+  "is_oss": true,
+  "license": "MIT (SDK)",
+  "repo": "https://github.com/atxp-dev/sdk"
+ },
+ "self_host": null,
+ "setup_steps_to_first_call": [
+  "npx atxp agent register (gets $5 credits, wallet, email, connection string)",
+  "Set ATXP_CONNECTION",
+  "Connect MCP tool server (e.g. https://search.mcp.atxp.ai/) or npx skills add atxp-dev/cli"
+ ],
+ "public_endpoints_probed": [
+  {
+   "url": "https://docs.atxp.ai/llms.txt",
+   "result": "200"
+  }
+ ],
+ "strengths": [
+  "Zero-human agent self-registration with funded account",
+  "Agent identity bundle: wallet + email + LLM gateway",
+  "Multi-chain accounts",
+  "Strong payments-industry backers; seller-side MCP monetization SDK"
+ ],
+ "weaknesses": [
+  "Tiny first-party tool catalog (9 tools)",
+  "No documented spend caps/allowlists",
+  "Prices not published per tool",
+  "Attention split across consumer apps"
+ ],
+ "sources": [
+  {
+   "claim": "Free to create, no subscription; consumer apps; Circuit & Chisel",
+   "url": "https://atxp.ai/"
+  },
+  {
+   "claim": "$5 credits self-register; CLI commands; docs MCP; skill",
+   "url": "https://docs.atxp.ai/llms.txt"
+  },
+  {
+   "claim": "9 tools listed",
+   "url": "https://docs.atxp.ai/tools"
+  },
+  {
+   "claim": "Per-tool MCP URL and multi-chain accounts",
+   "url": "https://docs.atxp.ai/tools/search"
+  },
+  {
+   "claim": "$19.2M seed and investors",
+   "url": "https://pulse2.com/circuit-chisel-19-2-million-secured-and-atxp-launched/amp/"
+  },
+  {
+   "claim": "SDK MIT",
+   "url": "https://github.com/atxp-dev/sdk"
+  }
+ ]
+}

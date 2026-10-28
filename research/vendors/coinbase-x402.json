@@ -1,0 +1,109 @@
+{
+ "name": "Coinbase x402 + x402 Bazaar + Agentic Wallet (CDP)",
+ "url": "https://docs.cdp.coinbase.com/x402",
+ "tagline": "Open HTTP-402 stablecoin payment standard, public Bazaar discovery index, and an agent wallet (CLI/MCP) that pays any x402 service",
+ "status_notes": "Active. x402 is now governed by the x402 Foundation (LF Projects). Not an aggregator: each merchant sets price; no shared provider accounts. Agentic Wallet launched Feb 11, 2026.",
+ "founded": null,
+ "backers": "Coinbase (public company)",
+ "catalog": {
+  "tools": 86415,
+  "providers": null,
+  "as_of": "2026-10-27",
+  "source": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources?type=http&limit=2"
+ },
+ "categories": [
+  "open marketplace: any x402 resource (data, AI, crypto, media, etc.)"
+ ],
+ "pricing": {
+  "markup_pct": 0,
+  "platform_fee": "x402: 'Zero protocol fees' (network fees only)",
+  "per_call_min_usd": null,
+  "free_credit_usd": null,
+  "subscription": "none",
+  "failed_calls_billed": null,
+  "notes": "Prices set per resource by merchant; Bazaar indexes resources settled via the CDP Facilitator."
+ },
+ "payment_rails": [
+  "USDC/stablecoins on EVM chains (Base) and Solana via x402"
+ ],
+ "access": {
+  "remote_mcp": false,
+  "mcp_url": null,
+  "cli": true,
+  "cli_package": "awal (npx awal); MCP: npx @coinbase/payments-mcp",
+  "rest_api": true,
+  "sdks": [
+   "typescript (@coinbase/cdp-sdk)",
+   "other generated OpenAPI clients"
+  ],
+  "skill_md": true,
+  "llms_txt": true
+ },
+ "byo_provider_accounts": false,
+ "spend_controls": {
+  "per_agent_caps": true,
+  "tool_allowlist": null,
+  "approval_flows": null,
+  "revocable_keys": null,
+  "notes": "Agentic Wallet 'built-in security guardrails'; press reports session caps and per-transaction ceilings, enclave-held keys, KYT screening (secondary sources). MCP mode can only discover and pay, not send/trade."
+ },
+ "quote_before_call": true,
+ "receipts_audit_log": null,
+ "idempotency": null,
+ "open_source": {
+  "is_oss": true,
+  "license": "Apache-2.0",
+  "repo": "https://github.com/coinbase/x402"
+ },
+ "self_host": true,
+ "setup_steps_to_first_call": [
+  "npx @coinbase/payments-mcp (or npx skills add coinbase/agentic-wallet-skills)",
+  "Sign in and fund wallet with USDC",
+  "Discover service via Bazaar search (no key)",
+  "Request \u2192 HTTP 402 \u2192 wallet pays \u2192 retry gets resource"
+ ],
+ "public_endpoints_probed": [
+  {
+   "url": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources?type=http&limit=2",
+   "result": "200 unauthenticated; pagination.total=86415 resources"
+  }
+ ],
+ "strengths": [
+  "Open standard, zero protocol fee, self-hostable facilitator/middleware",
+  "Largest discovery index (86k+ resources) with quality signals (30-day call volume, unique payers)",
+  "Price known from the 402 challenge before paying",
+  "Distribution: Coinbase wallet + MCP for Claude/Codex/Gemini"
+ ],
+ "weaknesses": [
+  "Stablecoin-only buyer funding; crypto onboarding",
+  "No curated provider accounts \u2014 mainstream APIs (Apollo, Exa, ElevenLabs) only if someone wraps them in x402",
+  "Merchant quality/uptime highly variable",
+  "Spend-control details mainly from secondary press"
+ ],
+ "sources": [
+  {
+   "claim": "Bazaar public discovery, search ranking & quality, CDP SDK functions",
+   "url": "https://docs.cdp.coinbase.com/x402/buyer/discover-services"
+  },
+  {
+   "claim": "Agentic Wallet CLI/MCP, setup commands, MCP pays only",
+   "url": "https://docs.cdp.coinbase.com/agentic-wallet/welcome"
+  },
+  {
+   "claim": "Bazaar API total 86,415",
+   "url": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources?type=http&limit=2"
+  },
+  {
+   "claim": "Zero protocol fees; chains; open standard; LF Projects",
+   "url": "https://www.x402.org/"
+  },
+  {
+   "claim": "Launch Feb 11, 2026; session caps / per-tx ceilings; KYT; enclave keys",
+   "url": "https://decrypt.co/357862/morning-minute-coinbase-gives-ai-agents-their-own-wallets"
+  },
+  {
+   "claim": "x402 repo Apache-2.0",
+   "url": "https://github.com/coinbase/x402"
+  }
+ ]
+}

@@ -1,0 +1,117 @@
+{
+ "name": "Orthogonal",
+ "url": "https://www.orthogonal.com/",
+ "tagline": "One key + one balance for 60+ providers / ~1,000 endpoints (search, scraping, enrichment, market/social data) via API, MCP, CLI",
+ "status_notes": "Active (YC-backed). Closest product-shape match to o11: discover \u2192 inspect \u2192 quote \u2192 run.",
+ "founded": null,
+ "backers": "$4.3M seed (June 2026) led by Pantera Capital with Y Combinator, Pioneer Fund, Decasonic, Blast, Outbound, Surreal",
+ "catalog": {
+  "tools": 954,
+  "providers": 66,
+  "as_of": "2026-10-27",
+  "source": "https://api.orthogonal.com/discover"
+ },
+ "categories": [
+  "web search",
+  "scraping",
+  "enrichment",
+  "agent actions (e.g. AgentMail)",
+  "market & financial data",
+  "social data",
+  "ads intelligence"
+ ],
+ "pricing": {
+  "markup_pct": null,
+  "platform_fee": "5% processing fee on credit top-ups ($25 credits = $26.25)",
+  "per_call_min_usd": null,
+  "free_credit_usd": 1,
+  "subscription": "none ('no monthly platform subscription')",
+  "failed_calls_billed": null,
+  "notes": "Per-endpoint listed prices (fixed or request-dependent). $1 one-time starter credit for eligible verified agent signups."
+ },
+ "payment_rails": [
+  "prepaid USD credits (Stripe card)",
+  "x402 (USDC/OUSD on Base)",
+  "MPP (USDC.e/OUSD on Tempo)",
+  "Circle Gateway nanopayments"
+ ],
+ "access": {
+  "remote_mcp": true,
+  "mcp_url": "https://mcp.orthogonal.com",
+  "cli": true,
+  "cli_package": "@orth/cli",
+  "rest_api": true,
+  "sdks": [
+   "typescript (@orth/sdk)"
+  ],
+  "skill_md": true,
+  "llms_txt": true
+ },
+ "byo_provider_accounts": null,
+ "spend_controls": {
+  "per_agent_caps": null,
+  "tool_allowlist": null,
+  "approval_flows": null,
+  "revocable_keys": null,
+  "notes": "No per-agent budget/allowlist controls documented in skill.md or homepage; checkout links require user approval; balance/usage endpoints."
+ },
+ "quote_before_call": true,
+ "receipts_audit_log": true,
+ "idempotency": false,
+ "open_source": {
+  "is_oss": false,
+  "license": null,
+  "repo": null
+ },
+ "self_host": false,
+ "setup_steps_to_first_call": [
+  "Paste orthogonal.com/skill.md into coding agent, or npm i -g @orth/cli && orth login (or device-code agent signup with email+phone verify)",
+  "Fund credits (or pay per call via x402/MPP)",
+  "orth search '<need>' \u2192 orth api show \u2192 orth run --dry-run \u2192 orth run"
+ ],
+ "public_endpoints_probed": [
+  {
+   "url": "https://api.orthogonal.com/discover",
+   "result": "200 unauthenticated; count=66 APIs, totalEndpoints=954, protocols x402/mpp/np"
+  },
+  {
+   "url": "https://www.orthogonal.com/skill.md",
+   "result": "200"
+  },
+  {
+   "url": "https://www.orthogonal.com/llms.txt",
+   "result": "200"
+  }
+ ],
+ "strengths": [
+  "Unauthenticated machine-readable catalog with schemas + prices (/discover, /openapi.json)",
+  "Explicit quote / dry-run tool",
+  "Multi-rail: card credits plus x402, MPP, nanopayments",
+  "Agent self-signup device flow",
+  "MCP, CLI, SDK, REST, skill.md parity"
+ ],
+ "weaknesses": [
+  "Catalog ~66 providers (vs o11 549)",
+  "No documented per-agent caps, allowlists or approvals",
+  "No idempotency \u2014 docs tell agents to check usage before retrying",
+  "5% top-up fee"
+ ],
+ "sources": [
+  {
+   "claim": "60+ providers, 1,000+ endpoints; quote; no monthly subscription; x402/MPP/nanopayments; $4.3M Pantera; YC",
+   "url": "https://www.orthogonal.com/"
+  },
+  {
+   "claim": "CLI/SDK/MCP/REST; quote; 5% fee; $1 starter credit; retry guidance; rails",
+   "url": "https://www.orthogonal.com/skill.md"
+  },
+  {
+   "claim": "Discover probe: 66 APIs / 954 endpoints",
+   "url": "https://api.orthogonal.com/discover"
+  },
+  {
+   "claim": "Seed round details",
+   "url": "https://alpha-maven.com/story/venture-capital/orthogonal-raises-43m-seed-round"
+  }
+ ]
+}

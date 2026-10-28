@@ -1,0 +1,108 @@
+{
+ "name": "AgentCash (Merit Systems)",
+ "url": "https://agentcash.dev/",
+ "tagline": "One USDC balance for thousands of x402/MPP APIs; CLI + skill + MCP extension for Claude/Codex/Cursor",
+ "status_notes": "Active. Built by Merit Systems (also runs x402scan explorer). First-party 'stable*' wrapper services (stableenrich, stablestudio, stablesocial, stableemail, stableupload, stabletravel) also resold inside Anyway's catalog.",
+ "founded": null,
+ "backers": "Merit Systems: $10M seed led by a16z",
+ "catalog": {
+  "tools": 3200,
+  "providers": null,
+  "as_of": "2026-10-27",
+  "source": "https://agentcash.dev/docs"
+ },
+ "categories": [
+  "people/company enrichment",
+  "image & video gen",
+  "social media data",
+  "agent email",
+  "file uploads",
+  "travel search",
+  "deep research"
+ ],
+ "pricing": {
+  "markup_pct": null,
+  "platform_fee": null,
+  "per_call_min_usd": null,
+  "free_credit_usd": 25,
+  "subscription": "none",
+  "failed_calls_billed": null,
+  "notes": "'Up to $25' onboarding bonus decided by an onboarding agent; '$100,000 to our first users' promo. Calls 'cost fractions of a cent to a few cents each'."
+ },
+ "payment_rails": [
+  "USDC via x402",
+  "MPP"
+ ],
+ "access": {
+  "remote_mcp": false,
+  "mcp_url": null,
+  "cli": true,
+  "cli_package": "agentcash (npx agentcash@latest onboard)",
+  "rest_api": null,
+  "sdks": [],
+  "skill_md": true,
+  "llms_txt": true
+ },
+ "byo_provider_accounts": false,
+ "spend_controls": {
+  "per_agent_caps": null,
+  "tool_allowlist": null,
+  "approval_flows": null,
+  "revocable_keys": null,
+  "notes": "No spend limits/approvals documented in docs or skill.md."
+ },
+ "quote_before_call": null,
+ "receipts_audit_log": null,
+ "idempotency": null,
+ "open_source": {
+  "is_oss": null,
+  "license": null,
+  "repo": "https://github.com/Merit-Systems/x402scan"
+ },
+ "self_host": false,
+ "setup_steps_to_first_call": [
+  "npx agentcash@latest onboard (local machine) or install MCPB extension",
+  "Fund via npx agentcash fund / invite code",
+  "Agent reads agentcash.dev/skill.md and calls x402/MPP APIs"
+ ],
+ "public_endpoints_probed": [
+  {
+   "url": "https://agentcash.dev/skill.md",
+   "result": "200 (via WebFetch)"
+  }
+ ],
+ "strengths": [
+  "Open-web reach: any x402/MPP merchant indexed by x402scan/mppscan (3,200+ APIs claimed)",
+  "Claims 1.5M+ paid tool calls",
+  "Generous onboarding credit",
+  "a16z-backed team owning ecosystem explorer"
+ ],
+ "weaknesses": [
+  "Crypto-only (USDC) funding",
+  "No documented spend controls, quotes, or receipts",
+  "MCP is a local MCPB extension, not a hosted remote MCP",
+  "Heterogeneous third-party merchant quality"
+ ],
+ "sources": [
+  {
+   "claim": "One balance; 1.5M+ paid calls; stable* services & route counts; $25 bonus; $100,000 promo; npx onboard",
+   "url": "https://agentcash.dev/"
+  },
+  {
+   "claim": "3,200+ premium APIs via x402scan/mppscan",
+   "url": "https://agentcash.dev/docs"
+  },
+  {
+   "claim": "x402 or mpp; USDC; MCPB extension; fund command",
+   "url": "https://agentcash.dev/skill.md"
+  },
+  {
+   "claim": "Merit $10M seed led by a16z",
+   "url": "https://merit.systems/"
+  },
+  {
+   "claim": "x402scan repo",
+   "url": "https://github.com/Merit-Systems/x402scan"
+  }
+ ]
+}

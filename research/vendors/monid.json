@@ -1,0 +1,137 @@
+{
+  "name": "Monid",
+  "url": "https://monid.ai",
+  "tagline": "Connect your agent to every tool it needs. / The OpenRouter for agent tools. 2,800+ tools, one key, one balance, pay as you go.",
+  "status_notes": "Live, self-serve. Monid Inc, Delaware C-Corp, San Francisco. Press says it launched April 2026 with about 200 tools. Focus is READ/data endpoints (search, scraping, enrichment, social incl. Chinese platforms, finance/on-chain, maps, real estate, SEO, gen-AI, voice/SMS), not SaaS write actions; llms.txt points to Composio/Zapier for those. Official copy disagrees on catalog size: skill.md and docs say 'hundreds', homepage and llms.txt say 2,800+, GitHub README says 2,000+/72+. Fee claims also conflict (see pricing.notes). Bash broke partway through (disk full, ENOSPC), so later pages were read with WebFetch and not saved raw. The POST discover probe could not be run with curl; a WebFetch GET returned 401.",
+  "founded": null,
+  "backers": ["1984 Ventures (pre-seed, per press)", "Llama Ventures (pre-seed, per press)", "Untapped Capital (pre-seed, per search aggregator only)", "Founders, Inc. (pre-seed, per search aggregator only)"],
+  "catalog": {
+    "tools": 2800,
+    "providers": 90,
+    "as_of": "2026-10-27 (homepage claim '2800+ tools across 90+ providers'; live /tools counter rendered '--' client-side)",
+    "source": "https://monid.ai/"
+  },
+  "categories": [
+    "Web search and answers",
+    "Website scraping and extraction",
+    "Browser automation",
+    "Social platform data (incl. Douyin, Xiaohongshu, Weibo, Zhihu, Bilibili, WeChat)",
+    "People and company enrichment",
+    "Contact verification",
+    "Maps, places, local reviews",
+    "Real estate",
+    "E-commerce and pricing",
+    "Jobs, hiring, compensation",
+    "SEO and backlinks",
+    "Financial and market data",
+    "On-chain and DeFi",
+    "News",
+    "Voice, phone, SMS",
+    "Demographics and weather",
+    "Model infrastructure (embeddings, benchmarks)",
+    "Generative AI (image, video, music, speech, 3D)",
+    "Remote file storage (sfs provider, free 1 GB)"
+  ],
+  "pricing": {
+    "markup_pct": 0,
+    "platform_fee": "Conflicting. Official llms.txt: 'most endpoints carry 0 Markup: you pay the provider's standard rate, with no platform fee on top' (look for the no-markup tag). Press (cryptobriefing, dealroom): 10% platform fee on top of provider rates. markup_pct=0 reflects the official claim for MOST endpoints only.",
+    "per_call_min_usd": 0.0013,
+    "free_credit_usd": 1,
+    "subscription": false,
+    "failed_calls_billed": false,
+    "notes": "Prepaid wallet, pay per call. Price models: PER_CALL, PER_RESULT (+ optional flatFee), BY_PERIOD, PER_UNIT_MATRIX, METERED. The estimated cost is held during a run, then settled to the actual cost. Provider errors (e.g. a provider 404) settle at $0 (actualCost 0), and TIMED_OUT is zero-billed on x402. $0.0013/call is the homepage example and the press 'starts at' figure. x402 runs have a $0.01 minimum and exclude metered endpoints. discover is free per the GitHub README. Docs examples use $0.003/call."
+  },
+  "payment_rails": [
+    "Prepaid USD workspace balance (top up at app.monid.ai; card processor not documented publicly)",
+    "x402: USDC on Base mainnet (eip155:8453)",
+    "x402: USDC on Monad mainnet (eip155:143)"
+  ],
+  "access": {
+    "remote_mcp": true,
+    "mcp_url": "https://mcp.monid.ai/v1",
+    "cli": true,
+    "cli_package": "@monid-ai/cli (npm; skill.md v0.1.8 requires the CLI version to match)",
+    "rest_api": true,
+    "sdks": [],
+    "skill_md": true,
+    "llms_txt": true
+  },
+  "byo_provider_accounts": false,
+  "spend_controls": {
+    "per_agent_caps": false,
+    "tool_allowlist": false,
+    "approval_flows": false,
+    "revocable_keys": true,
+    "notes": "Workspace-level controls only: WORKSPACE_BUDGET (period limit with available/held/spent) and WORKSPACE_RUN_CAP (per-run max). A run blocked by either returns status BLOCKED with a controls[] array, and controls can be paused or changed in the dashboard. No per-agent or per-key budget is documented. Allowlisting and blocklisting are only offered as do-it-yourself in your own proxy (MONID_API_BASE_URL). Keys can be generated and rotated at app.monid.ai/access/api-keys, and the docs mention keys with restricted permissions ('Access denied' for disputes). OAuth 2.0/OIDC is available for third-party apps, with client credentials issued by emailing support. The open-source engine can run locally with your own vendor keys, but the hosted product does not use BYO provider accounts."
+  },
+  "quote_before_call": true,
+  "receipts_audit_log": true,
+  "idempotency": false,
+  "open_source": {
+    "is_oss": true,
+    "license": "MIT",
+    "repo": "https://github.com/monid-ai/monid"
+  },
+  "self_host": false,
+  "setup_steps_to_first_call": [
+    "Create an account at https://app.monid.ai ($1 free credit, no card required)",
+    "Generate an API key at https://app.monid.ai/access/api-keys (format monid_live_...)",
+    "npm install -g @monid-ai/cli@latest && monid setup",
+    "monid keys add -k <key> -l main",
+    "monid discover -q \"twitter posts\"",
+    "monid inspect -p apify -e /apidojo/tweet-scraper (schema + live price)",
+    "monid run -p apify -e /apidojo/tweet-scraper -i '{...}' then monid runs get -r <runId>",
+    "MCP alternative: claude mcp add --transport http monid https://mcp.monid.ai/v1, then /mcp Authenticate (OAuth login)",
+    "x402 alternative: still needs an API key for discover/inspect, then POST https://x402.monid.ai/v1/run with an x402 client and a USDC wallet"
+  ],
+  "public_endpoints_probed": [
+    {"url": "https://api.monid.ai/v1/discover", "method": "GET (via WebFetch; curl POST not possible because the local disk was full)", "status": 401, "notes": "Unauthorized. Docs say every /v1/* endpoint requires a Bearer API key or OAuth token, including discover and inspect, even for x402 users. No public unauthenticated catalog API was found."},
+    {"url": "https://x402.monid.ai/v1/run", "method": "GET (via WebFetch)", "status": 404, "notes": "Route is POST-only per docs. The documented POST returns 402 with an accepts[] array (Base, Monad). Not probed with POST to avoid starting a payment flow."},
+    {"url": "https://monid.ai/llms.txt", "method": "GET", "status": 200, "notes": "Saved raw. 12 KB. States 2,800+ tools and 0 Markup on most endpoints."},
+    {"url": "https://monid.ai/skill.md", "method": "GET", "status": 200, "notes": "Saved raw. Skill v0.1.8, full CLI command table."},
+    {"url": "https://monid.ai/docs/llms.txt", "method": "GET", "status": 200, "notes": "Docs index (Mintlify). docs.monid.ai also serves an Introduction page, but docs.monid.ai/llms.txt returns 404."},
+    {"url": "https://monid.ai/pricing", "method": "GET", "status": 404, "notes": "No pricing page. Pricing lives at https://monid.ai/docs/guide/pricing."},
+    {"url": "https://monid.ai/tools", "method": "GET", "status": 200, "notes": "Catalog is rendered client-side. Counters show '--' without JS, and no static count is exposed."}
+  ],
+  "strengths": [
+    "Large catalog of data endpoints (claims 2,800+), with unusual coverage of Chinese social platforms and of finance/on-chain data",
+    "Four ways in: remote MCP with OAuth, skill.md, CLI, and REST, plus Claude Tag, Hermes, and Cursor plugins",
+    "Live price returned by inspect before a run. Estimated cost held, then settled to actual; provider errors billed $0",
+    "Dual payment rails: prepaid USD balance or per-run x402 USDC on Base and Monad",
+    "Endpoint health metrics in discover/inspect, plus dispute and feedback commands for bad runs",
+    "MIT-licensed connector engine on GitHub (about 6.7k stars), runnable locally with your own vendor keys",
+    "Embedding options for platforms: OAuth on users' own workspaces, or a reseller proxy with your own billing and markup"
+  ],
+  "weaknesses": [
+    "Even discover requires an API key. No public catalog API, and the /tools page has no static counts",
+    "Spend controls are workspace-wide (budget plus per-run cap). No per-agent caps, native tool allowlist, or approval flows",
+    "No documented idempotency keys on /v1/run",
+    "Read/data focus; does not do SaaS write actions such as Slack or HubSpot",
+    "Official numbers are inconsistent: 'hundreds' vs 2,000+ vs 2,800+ tools, and 0 markup vs a 10% fee in press",
+    "x402 has a $0.01 floor (vs the $0.0013 headline) and no metered endpoints",
+    "No first-party funding announcement found; founders not named publicly on the pages checked",
+    "Wallet activities API lists top-ups only; per-run costs must be pulled from /v1/runs"
+  ],
+  "sources": [
+    {"claim": "Tagline, 2800+ tools across 90+ providers, $0.0013/call example, $1 free credit, Monid Inc Delaware C-Corp SF", "url": "https://monid.ai/"},
+    {"claim": "OpenRouter for agent tools, 2,800+ tools, 0 Markup on most endpoints, prepaid/no subscription, free credit no card, held funds, categories, read-focused vs Composio/Zapier", "url": "https://monid.ai/llms.txt"},
+    {"claim": "CLI @monid-ai/cli, command set, workspace budget and run-cap controls (BLOCKED), sfs file storage, disputes, health, key format", "url": "https://monid.ai/skill.md"},
+    {"claim": "Remote MCP URL https://mcp.monid.ai/v1 (Streamable HTTP, OAuth)", "url": "https://monid.ai/docs/guide/quickstart-mcp.md"},
+    {"claim": "x402 USDC on Base and Monad, $0.01 minimum, metered endpoints excluded, API key still needed for discover/inspect", "url": "https://monid.ai/docs/guide/pay-with-x402.md"},
+    {"claim": "All /v1/* endpoints require Bearer auth; endpoint list; 402 on insufficient balance", "url": "https://monid.ai/docs/api/overview.md"},
+    {"claim": "POST /v1/discover request/response shape (results[].provider, endpoint, score, tags, price, hints; query; count; limit max 40)", "url": "https://monid.ai/docs/api/discover.md"},
+    {"claim": "Provider errors not charged; billing calculatedCost/actualCost/reportedCost; run IDs; BLOCKED controls", "url": "https://monid.ai/docs/api/run.md"},
+    {"claim": "Inspect returns price (type, amount, flatFee, notes) before run", "url": "https://monid.ai/docs/api/inspect.md"},
+    {"claim": "Pricing models PER_CALL and PER_RESULT; no subscriptions", "url": "https://monid.ai/docs/guide/pricing.md"},
+    {"claim": "Wallet activities list top-ups/credits only", "url": "https://monid.ai/docs/api/wallet/activities.md"},
+    {"claim": "Proxy integration: DIY allowlist, billing, markup via MONID_API_BASE_URL", "url": "https://monid.ai/docs/integrations/proxy.md"},
+    {"claim": "OAuth 2.0/OIDC for third-party apps, credentials via support email", "url": "https://monid.ai/docs/integrations/oauth.md"},
+    {"claim": "MIT license, connector-layer engine (Deno/TS), 2,000+ tools/72+ providers, discover free, failed calls settle at zero, local run with own vendor keys", "url": "https://github.com/monid-ai/monid"},
+    {"claim": "GitHub org repos: monid, cli, skills, plugins, cursor-plugin, hermes-plugin, awesome-monid, activegraph-monid", "url": "https://github.com/monid-ai"},
+    {"claim": "$7.7M raise announced Oct 6 2026, $2.1M pre-seed Sep 1 2026 (1984 Ventures, Llama Ventures), 10% platform fee, 4M+ agent transactions, ~200 tools at April 2026 launch, 1,700-2,500+ endpoints / 55-72+ providers by Sept", "url": "https://cryptobriefing.com/monid-raises-7-7-million-ai-agents-tools/"},
+    {"claim": "$7.7M seed Oct 6 2026, 10% platform fee, 4M+ transactions, 1,700+ endpoints by Sept", "url": "https://dealroom.co/news/160477-monid-raises-7-7m-seed-to-be-the-checkout-counter-for-ai-agents/"},
+    {"claim": "Pre-seed $2.1M with Untapped Capital and Founders, Inc. also listed", "url": "https://www.trysignalbase.com/news/funding/monid-raises-2-1m-pre-seed-for-agent-tool-platform"},
+    {"claim": "Third-party profile: 1,300+ tools / 13+ providers (stale), x402 networks, Kin score 56.2 on 2026-10-17", "url": "https://apis.io/providers/monid/"},
+    {"claim": "api.monid.ai/v1/discover returns 401 unauthenticated", "url": "https://api.monid.ai/v1/discover"}
+  ]
+}

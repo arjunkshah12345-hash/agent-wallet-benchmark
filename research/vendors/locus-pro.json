@@ -1,0 +1,109 @@
+{
+ "name": "Locus Pro (Locus)",
+ "url": "https://paywithlocus.com/pro",
+ "tagline": "3,954 paid agent tools from 57 providers behind one balance, with per-agent tool allowlists, per-call max, run budgets and per-customer billing/markup",
+ "status_notes": "Active (YC F25). Also offers Pay With Locus USDC wallets, Checkout, Build, and Locus Founder. Platform focus: resell tools to your own users with markup.",
+ "founded": null,
+ "backers": "Y Combinator (F25)",
+ "catalog": {
+  "tools": 3954,
+  "providers": 57,
+  "as_of": "2026-10-27",
+  "source": "https://paywithlocus.com/"
+ },
+ "categories": [
+  "LLMs (OpenAI, Anthropic, Gemini, Perplexity, Grok, DeepSeek, Mistral, Groq)",
+  "web search",
+  "enrichment",
+  "image/music gen",
+  "translation",
+  "OCR",
+  "math",
+  "crypto prices",
+  "email"
+ ],
+ "pricing": {
+  "markup_pct": null,
+  "platform_fee": "Free $0; Enterprise $200/mo (incl. $30 credits); Enterprise Plus $1,000/mo (incl. $100 credits)",
+  "per_call_min_usd": null,
+  "free_credit_usd": null,
+  "subscription": "Free / $200 / $1,000 per month / custom",
+  "failed_calls_billed": null,
+  "notes": "Calls billed at provider base cost; platforms add their own markup (%, flat, or both); platform margin paid out after 30-day hold. Free tier limited to 5 tool calls/min."
+ },
+ "payment_rails": [
+  "prepaid credits",
+  "USDC wallets (Pay With Locus, USDC on Base)"
+ ],
+ "access": {
+  "remote_mcp": true,
+  "mcp_url": null,
+  "cli": true,
+  "cli_package": null,
+  "rest_api": true,
+  "sdks": [
+   "typescript (@withlocus/credits)"
+  ],
+  "skill_md": null,
+  "llms_txt": true
+ },
+ "byo_provider_accounts": true,
+ "spend_controls": {
+  "per_agent_caps": true,
+  "tool_allowlist": true,
+  "approval_flows": null,
+  "revocable_keys": true,
+  "notes": "Agent Connection keys (lcac_) carry allowed tools, a max per call and a run budget; 'A blocked call never reaches the provider'; separate server/publishable/end-user/sandbox keys; per-customer balances."
+ },
+ "quote_before_call": null,
+ "receipts_audit_log": true,
+ "idempotency": true,
+ "open_source": {
+  "is_oss": false,
+  "license": null,
+  "repo": null
+ },
+ "self_host": false,
+ "setup_steps_to_first_call": [
+  "Create workspace (free)",
+  "npm i @withlocus/credits and set server secret key (or hosted MCP / CLI)",
+  "Buy credits / fund pool",
+  "credits.callJson('tavily/search', {query}, {user})"
+ ],
+ "public_endpoints_probed": [
+  {
+   "url": "https://paywithlocus.com/pro",
+   "result": "200"
+  }
+ ],
+ "strengths": [
+  "Per-agent allowlist + per-call max + run budget enforced before provider dispatch",
+  "Idempotency-Key guarantees no double charge",
+  "Per-end-user balances, markup and signed webhooks \u2014 strong for platforms reselling tools",
+  "BYO APIs billed through same ledger",
+  "Sandbox keys with no charges"
+ ],
+ "weaknesses": [
+  "Platform-oriented; free tier throttled at 5 calls/min",
+  "Monthly fees for team/customer billing",
+  "Smaller provider count (57) than o11 (549)"
+ ],
+ "sources": [
+  {
+   "claim": "3,954 services from 57 providers; agent connection limits; idempotency; pricing tiers; BYO APIs; markup; webhooks; hosted MCP/CLI/SDK",
+   "url": "https://paywithlocus.com/"
+  },
+  {
+   "claim": "Locus Pro pay-as-you-go page",
+   "url": "https://paywithlocus.com/pro"
+  },
+  {
+   "claim": "YC F25; founders; USDC on Base",
+   "url": "https://www.ycombinator.com/launches/Oj6-locus-payment-infrastructure-for-ai-agents"
+  },
+  {
+   "claim": "Docs (llms-style index)",
+   "url": "https://docs.paywithlocus.com/index.md"
+  }
+ ]
+}

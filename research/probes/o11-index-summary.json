@@ -1,0 +1,71 @@
+{
+ "toolCount": 8172,
+ "sources": {
+  "treg": 3949,
+  "o11": 2760,
+  "agentmuxer": 1463
+ },
+ "providers": 550,
+ "top_providers": [
+  [
+   "tikhub",
+   1900
+  ],
+  [
+   "dataforseo",
+   458
+  ],
+  [
+   "anyapi",
+   397
+  ],
+  [
+   "justoneapi",
+   272
+  ],
+  [
+   "api-strale-io",
+   197
+  ],
+  [
+   "x",
+   173
+  ],
+  [
+   "scrapecreators",
+   172
+  ],
+  [
+   "defillama",
+   135
+  ],
+  [
+   "replicate",
+   133
+  ],
+  [
+   "api-agentstools-dev",
+   119
+  ],
+  [
+   "crawl4ai",
+   117
+  ],
+  [
+   "google-tag-manager",
+   106
+  ],
+  [
+   "surf",
+   105
+  ],
+  [
+   "youtube",
+   84
+  ],
+  [
+   "x402stock",
+   83
+  ]
+ ]
+}

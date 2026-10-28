@@ -1,0 +1,125 @@
+{
+ "name": "Nevermined",
+ "url": "https://nevermined.ai/",
+ "tagline": "Agentic payments infra + AI Services Catalog: agents buy 160 paid services inside a spend mandate, via MCP",
+ "status_notes": "Active; Oct 15, 2026 update added card-funded Subscription credits, Catalog Readiness scoring, MPP payment channels. Also sells merchant/PSP infrastructure. o11 comparison post (vendor content) treats it as a direct alternative.",
+ "founded": null,
+ "backers": "~$4M round (Jan 2025) led by Generative Ventures with Polymorphic Capital, NEAR, Halo Capital, Factor Capital, Lyrik Ventures, Arca; reported $7M total. Founders Don Gossen & Aitor Argomaniz (ex-Ocean Protocol)",
+ "catalog": {
+  "tools": 160,
+  "providers": null,
+  "as_of": "2026-10",
+  "source": "https://nevermined.ai/catalog/"
+ },
+ "categories": [
+  "web search",
+  "scraping",
+  "data (e.g. SEC EDGAR, CoinMarketCap)",
+  "translation",
+  "research"
+ ],
+ "pricing": {
+  "markup_pct": 2,
+  "platform_fee": "2% buyer fee on external services (all rails); $0 when buying from Nevermined merchants; merchants pay 1% stablecoin / 2% card",
+  "per_call_min_usd": null,
+  "free_credit_usd": null,
+  "subscription": "Free (2,000 catalog credits); Catalog $20/mo = 20,000 credits; $10 packs; orgs $50/$250/$500 mo",
+  "failed_calls_billed": null,
+  "notes": "Free tier gives 2,000 credits (USD value of a credit not stated, so free_credit_usd left null)."
+ },
+ "payment_rails": [
+  "card (subscription credits / delegated card)",
+  "stablecoins via x402",
+  "MPP payment channels",
+  "Stripe/Braintree settlement"
+ ],
+ "access": {
+  "remote_mcp": true,
+  "mcp_url": "https://mcp.live.nevermined.app/mcp",
+  "cli": null,
+  "cli_package": null,
+  "rest_api": true,
+  "sdks": [
+   "typescript",
+   "python"
+  ],
+  "skill_md": null,
+  "llms_txt": true
+ },
+ "byo_provider_accounts": null,
+ "spend_controls": {
+  "per_agent_caps": true,
+  "tool_allowlist": null,
+  "approval_flows": null,
+  "revocable_keys": true,
+  "notes": "Spend mandate/delegation = payment method + amount + expiry + number of purchases; revoke in one action; groups with own caps (Premium); per-delivery-status spend breakdown; prepaid credits cannot exceed balance; separate sandbox keys."
+ },
+ "quote_before_call": null,
+ "receipts_audit_log": true,
+ "idempotency": null,
+ "open_source": {
+  "is_oss": true,
+  "license": "Apache-2.0 (payments SDK)",
+  "repo": "https://github.com/nevermined-io/payments"
+ },
+ "self_host": null,
+ "setup_steps_to_first_call": [
+  "Add MCP https://mcp.live.nevermined.app/mcp to client",
+  "Create account and API key (live: prefix)",
+  "Use free credits/subscribe, or enroll card and create a delegation (spend mandate)",
+  "Ask agent for a capability; catalog picks and pays a service"
+ ],
+ "public_endpoints_probed": [
+  {
+   "url": "https://nevermined.ai/catalog/",
+   "result": "200; '160 vetted paid services'"
+  },
+  {
+   "url": "https://nevermined.ai/pricing/",
+   "result": "200"
+  }
+ ],
+ "strengths": [
+  "Mandates with amount + expiry + purchase-count and one-click revoke",
+  "Card or crypto (x402/MPP) both supported",
+  "Readiness score + live health per service",
+  "ISO 27001 / SOC 2 Type II / PCI SAQ-D claims",
+  "Two-sided: also monetization for sellers"
+ ],
+ "weaknesses": [
+  "Small catalog (160 services)",
+  "2% buyer fee on external services",
+  "Credits abstraction obscures USD price",
+  "Little public info on BYO accounts, idempotency, failed-call refunds"
+ ],
+ "sources": [
+  {
+   "claim": "160 vetted paid services; MCP URL; 2,000 free credits; $20/mo 20,000 credits",
+   "url": "https://nevermined.ai/catalog/"
+  },
+  {
+   "claim": "Pricing tiers; 2% buyer fee; merchant 1-2%; groups with spending caps; certifications; llms.txt link",
+   "url": "https://nevermined.ai/pricing/"
+  },
+  {
+   "claim": "Mandate amount/purchases/expiry, revoke",
+   "url": "https://nevermined.ai/"
+  },
+  {
+   "claim": "Oct 15 2026 update: subscription, readiness, MPP channels, spend breakdown",
+   "url": "https://nevermined.ai/blog/whats-new-nevermined-subscriptions-catalog-readiness"
+  },
+  {
+   "claim": "Delegation = payment method + spend mandate; sandbox/live keys; revoke delegation",
+   "url": "https://nevermined.ai/docs/products/catalog/connect/make.md"
+  },
+  {
+   "claim": "$4M round led by Generative Ventures; founders",
+   "url": "https://fintech.global/2025/01/10/nevermined-secures-4m-to-revolutionise-ai-commerce-with-ai-payment-protocol/"
+  },
+  {
+   "claim": "Payments SDK Apache-2.0",
+   "url": "https://github.com/nevermined-io/payments"
+  }
+ ]
+}

@@ -1,0 +1,141 @@
+{
+ "name": "Anyway Agents (Anyway / Cenetrium Inc.)",
+ "url": "https://anyway.sh/agents",
+ "tagline": "Agent Wallet (USDC on Base) + SuperAPI x402 marketplace: agent pays per call under an owner-set per-transaction cap",
+ "status_notes": "Active. Company also runs Anyway Business (MoR/payment links); FinCEN MSB registered. Marketing says 50+ (page) / 60+ (SKILL.md) APIs; public directory probe returned 37 providers / 193 paths, only 11 marked healthy at probe time. o11 has a vendor comparison post (o11.ai/blog/o11-vs-anyway).",
+ "founded": null,
+ "backers": "Sky9 Capital ('multimillion-dollar investment', per site banner)",
+ "catalog": {
+  "tools": 193,
+  "providers": 37,
+  "as_of": "2026-10-27",
+  "source": "https://marketplace-prod.anyway.sh/v1/api/directory"
+ },
+ "categories": [
+  "ai/llm",
+  "crypto",
+  "search",
+  "finance",
+  "prediction markets",
+  "social (X)",
+  "voice",
+  "image gen",
+  "travel",
+  "browser/proxy",
+  "storage"
+ ],
+ "pricing": {
+  "markup_pct": null,
+  "platform_fee": null,
+  "per_call_min_usd": 0.001,
+  "free_credit_usd": null,
+  "subscription": "none ('Free to start \u2014 no card required')",
+  "failed_calls_billed": null,
+  "notes": "Network fee sponsored by Anyway. Card-funded credits 'can't be withdrawn or refunded'. Org Credits used before wallet USDC. per_call_min from homepage demo prices ($0.001 calls)."
+ },
+ "payment_rails": [
+  "USDC on Base (x402)",
+  "card-funded Anyway Credits"
+ ],
+ "access": {
+  "remote_mcp": null,
+  "mcp_url": null,
+  "cli": true,
+  "cli_package": "@anyway-sh/cli",
+  "rest_api": true,
+  "sdks": [
+   "javascript (tracing)",
+   "python (tracing)"
+  ],
+  "skill_md": true,
+  "llms_txt": true
+ },
+ "byo_provider_accounts": null,
+ "spend_controls": {
+  "per_agent_caps": true,
+  "tool_allowlist": null,
+  "approval_flows": null,
+  "revocable_keys": true,
+  "notes": "Per-signature (per-transaction) USDC cap enforced server-side; direct eth_sendTransaction blocked; owner-only policy changes via browser; key reset. Daily/total caps and allowlists not documented. Terms put scope/limit configuration on the user."
+ },
+ "quote_before_call": true,
+ "receipts_audit_log": true,
+ "idempotency": null,
+ "open_source": {
+  "is_oss": false,
+  "license": null,
+  "repo": null
+ },
+ "self_host": false,
+ "setup_steps_to_first_call": [
+  "npm i -g @anyway-sh/cli",
+  "anyway login --non-interactive (owner approves URL)",
+  "anyway init wallets --type agent (owner sets spending limit in browser)",
+  "Owner funds agent wallet (USDC) or buys Credits",
+  "anyway superapi call <x402 URL> -y"
+ ],
+ "public_endpoints_probed": [
+  {
+   "url": "https://marketplace-prod.anyway.sh/v1/api/directory",
+   "result": "200; 37 providers, 193 paths, all x402, 11 healthy"
+  },
+  {
+   "url": "https://s.anyway.sh/SKILL.md",
+   "result": "200"
+  },
+  {
+   "url": "https://docs.anyway.sh/llms.txt",
+   "result": "200"
+  }
+ ],
+ "strengths": [
+  "Agent-owned wallet separated from main funds; direct sends blocked",
+  "Quote + confirm before signing in CLI",
+  "Can pay any x402 endpoint, not just its catalog",
+  "Agent Traces per purchase"
+ ],
+ "weaknesses": [
+  "Small, partly unhealthy catalog (37 providers; 11 healthy at probe)",
+  "Only per-transaction cap documented \u2014 no cumulative budget",
+  "Crypto-first (USDC on Base); card credits non-refundable",
+  "No documented MCP server or BYO accounts"
+ ],
+ "sources": [
+  {
+   "claim": "Per-tx cap, direct sends blocked, card credit non-refundable, traces, CLI, 50+ APIs, Sky9",
+   "url": "https://anyway.sh/agents"
+  },
+  {
+   "claim": "60+ APIs; CLI flow; USDC on Base agent wallet",
+   "url": "https://s.anyway.sh/SKILL.md"
+  },
+  {
+   "claim": "Per-signature cap server-side; key reset; network fee sponsored",
+   "url": "https://docs.anyway.sh/features/agent-wallet.md"
+  },
+  {
+   "claim": "Directory/info REST; CLI quote+confirm; policy rejection",
+   "url": "https://docs.anyway.sh/features/super-api.md"
+  },
+  {
+   "claim": "Credits before USDC; credits non-withdrawable",
+   "url": "https://docs.anyway.sh/billing/usage-limits.md"
+  },
+  {
+   "claim": "Directory probe: 37 providers / 193 paths / 11 healthy",
+   "url": "https://marketplace-prod.anyway.sh/v1/api/directory"
+  },
+  {
+   "claim": "Cenetrium Inc., FinCEN MSB",
+   "url": "https://anyway.sh/about-us"
+  },
+  {
+   "claim": "User responsible for scope/limits (sec 5.5.4)",
+   "url": "https://anyway.sh/terms/agent-wallet"
+  },
+  {
+   "claim": "o11 vendor comparison",
+   "url": "https://o11.ai/blog/o11-vs-anyway"
+  }
+ ]
+}

@@ -1,0 +1,422 @@
+[
+ {
+  "vendor": "o11",
+  "kind": "home",
+  "url": "https://o11.ai/",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 592,
+  "ttfb_p90_ms": 758,
+  "bytes": 364495
+ },
+ {
+  "vendor": "o11",
+  "kind": "llms",
+  "url": "https://o11.ai/llms.txt",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 159,
+  "ttfb_p90_ms": 192,
+  "bytes": 1297
+ },
+ {
+  "vendor": "o11",
+  "kind": "skill",
+  "url": "https://o11.ai/skill.md",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 276,
+  "ttfb_p90_ms": 298,
+  "bytes": 23877
+ },
+ {
+  "vendor": "o11",
+  "kind": "mcp",
+  "url": "https://go.o11.ai/mcp",
+  "n": 12,
+  "codes": {
+   "401": 12
+  },
+  "ttfb_p50_ms": 250,
+  "ttfb_p90_ms": 348,
+  "bytes": 67
+ },
+ {
+  "vendor": "o11",
+  "kind": "catalog",
+  "url": "https://go.o11.ai/v1/tool-reference/index.json",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 439,
+  "ttfb_p90_ms": 1752,
+  "bytes": 2375582
+ },
+ {
+  "vendor": "Treg",
+  "kind": "home",
+  "url": "https://treg.to/",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 314,
+  "ttfb_p90_ms": 347,
+  "bytes": 97658
+ },
+ {
+  "vendor": "Treg",
+  "kind": "llms",
+  "url": "https://treg.to/llms.txt",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 269,
+  "ttfb_p90_ms": 333,
+  "bytes": 9737
+ },
+ {
+  "vendor": "Treg",
+  "kind": "skill",
+  "url": "https://treg.to/skill.md",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 180,
+  "ttfb_p90_ms": 195,
+  "bytes": 26769
+ },
+ {
+  "vendor": "Treg",
+  "kind": "mcp",
+  "url": "https://treg.to/mcp/",
+  "n": 12,
+  "codes": {
+   "401": 12
+  },
+  "ttfb_p50_ms": 179,
+  "ttfb_p90_ms": 246,
+  "bytes": 242
+ },
+ {
+  "vendor": "Treg",
+  "kind": "catalog",
+  "url": "https://treg.to/catalog/search?q=find%20a%20work%20email",
+  "n": 10,
+  "codes": {
+   "200": 10
+  },
+  "ttfb_p50_ms": 462,
+  "ttfb_p90_ms": 936,
+  "bytes": 55456
+ },
+ {
+  "vendor": "Orthogonal",
+  "kind": "home",
+  "url": "https://www.orthogonal.com/",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 189,
+  "ttfb_p90_ms": 249,
+  "bytes": 171034
+ },
+ {
+  "vendor": "Orthogonal",
+  "kind": "llms",
+  "url": "https://www.orthogonal.com/llms.txt",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 172,
+  "ttfb_p90_ms": 222,
+  "bytes": 23820
+ },
+ {
+  "vendor": "Orthogonal",
+  "kind": "skill",
+  "url": "https://www.orthogonal.com/skill.md",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 156,
+  "ttfb_p90_ms": 213,
+  "bytes": 9020
+ },
+ {
+  "vendor": "Orthogonal",
+  "kind": "mcp",
+  "url": "https://mcp.orthogonal.com",
+  "n": 12,
+  "codes": {
+   "401": 12
+  },
+  "ttfb_p50_ms": 277,
+  "ttfb_p90_ms": 408,
+  "bytes": 192
+ },
+ {
+  "vendor": "Orthogonal",
+  "kind": "catalog",
+  "url": "https://api.orthogonal.com/discover",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 689,
+  "ttfb_p90_ms": 810,
+  "bytes": 1591486
+ },
+ {
+  "vendor": "Composio",
+  "kind": "home",
+  "url": "https://composio.dev/",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 464,
+  "ttfb_p90_ms": 800,
+  "bytes": 599790
+ },
+ {
+  "vendor": "Composio",
+  "kind": "llms",
+  "url": "https://docs.composio.dev/llms.txt",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 201,
+  "ttfb_p90_ms": 320,
+  "bytes": 5747
+ },
+ {
+  "vendor": "Nevermined",
+  "kind": "home",
+  "url": "https://nevermined.ai/",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 140,
+  "ttfb_p90_ms": 161,
+  "bytes": 137330
+ },
+ {
+  "vendor": "Nevermined",
+  "kind": "mcp",
+  "url": "https://mcp.live.nevermined.app/mcp",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 733,
+  "ttfb_p90_ms": 775,
+  "bytes": 175
+ },
+ {
+  "vendor": "Anyway",
+  "kind": "home",
+  "url": "https://anyway.sh/agents",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 158,
+  "ttfb_p90_ms": 203,
+  "bytes": 257736
+ },
+ {
+  "vendor": "Anyway",
+  "kind": "llms",
+  "url": "https://docs.anyway.sh/llms.txt",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 331,
+  "ttfb_p90_ms": 418,
+  "bytes": 8549
+ },
+ {
+  "vendor": "Anyway",
+  "kind": "skill",
+  "url": "https://s.anyway.sh/SKILL.md",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 986,
+  "ttfb_p90_ms": 1219,
+  "bytes": 6280
+ },
+ {
+  "vendor": "Anyway",
+  "kind": "catalog",
+  "url": "https://marketplace-prod.anyway.sh/v1/api/directory",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 1059,
+  "ttfb_p90_ms": 1185,
+  "bytes": 262521
+ },
+ {
+  "vendor": "ATXP",
+  "kind": "home",
+  "url": "https://atxp.ai/",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 157,
+  "ttfb_p90_ms": 379,
+  "bytes": 20831
+ },
+ {
+  "vendor": "ATXP",
+  "kind": "llms",
+  "url": "https://docs.atxp.ai/llms.txt",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 494,
+  "ttfb_p90_ms": 513,
+  "bytes": 3918
+ },
+ {
+  "vendor": "ATXP",
+  "kind": "mcp",
+  "url": "https://search.mcp.atxp.ai/",
+  "n": 12,
+  "codes": {
+   "401": 12
+  },
+  "ttfb_p50_ms": 217,
+  "ttfb_p90_ms": 323,
+  "bytes": 2
+ },
+ {
+  "vendor": "AgentCash",
+  "kind": "home",
+  "url": "https://agentcash.dev/",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 939,
+  "ttfb_p90_ms": 1010,
+  "bytes": 562456
+ },
+ {
+  "vendor": "AgentCash",
+  "kind": "skill",
+  "url": "https://agentcash.dev/skill.md",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 152,
+  "ttfb_p90_ms": 213,
+  "bytes": 4327
+ },
+ {
+  "vendor": "Locus",
+  "kind": "home",
+  "url": "https://paywithlocus.com/pro",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 202,
+  "ttfb_p90_ms": 270,
+  "bytes": 89889
+ },
+ {
+  "vendor": "x402 Bazaar",
+  "kind": "catalog",
+  "url": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources?type=http&limit=20",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 471,
+  "ttfb_p90_ms": 634,
+  "bytes": 53844
+ },
+ {
+  "vendor": "Monid",
+  "kind": "home",
+  "url": "https://monid.ai/",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 203,
+  "ttfb_p90_ms": 227,
+  "bytes": 135289
+ },
+ {
+  "vendor": "Monid",
+  "kind": "llms",
+  "url": "https://monid.ai/llms.txt",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 203,
+  "ttfb_p90_ms": 218,
+  "bytes": 12211
+ },
+ {
+  "vendor": "Monid",
+  "kind": "skill",
+  "url": "https://monid.ai/skill.md",
+  "n": 12,
+  "codes": {
+   "200": 12
+  },
+  "ttfb_p50_ms": 229,
+  "ttfb_p90_ms": 246,
+  "bytes": 29147
+ },
+ {
+  "vendor": "Monid",
+  "kind": "mcp",
+  "url": "https://mcp.monid.ai/v1",
+  "n": 12,
+  "codes": {
+   "401": 12
+  },
+  "ttfb_p50_ms": 149,
+  "ttfb_p90_ms": 159,
+  "bytes": 24
+ },
+ {
+  "vendor": "Monid",
+  "kind": "api",
+  "url": "https://api.monid.ai/v1/discover",
+  "n": 6,
+  "codes": {
+   "401": 6
+  },
+  "ttfb_p50_ms": 150,
+  "ttfb_p90_ms": 153,
+  "bytes": 37
+ }
+]

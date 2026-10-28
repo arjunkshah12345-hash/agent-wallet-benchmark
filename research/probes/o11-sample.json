@@ -1,0 +1,42 @@
+{
+ "n": 240,
+ "seed": 42,
+ "price_basis": [
+  [
+   "variable",
+   172
+  ],
+  [
+   "free",
+   45
+  ],
+  [
+   "call",
+   23
+  ]
+ ],
+ "numeric_price_pct": 60.0,
+ "liveAccountChecked_true": 0,
+ "upstream_doc_reachability": [
+  [
+   "http_200",
+   185
+  ],
+  [
+   null,
+   47
+  ],
+  [
+   "not_reviewed",
+   6
+  ],
+  [
+   "blocked",
+   2
+  ]
+ ],
+ "paid_price_median_usd": 0.0015,
+ "paid_n": 99,
+ "paid_p10": 0.001,
+ "paid_p90": 0.06
+}

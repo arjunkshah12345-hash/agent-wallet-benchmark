@@ -1,0 +1,278 @@
+{
+  "name": "o11",
+  "url": "https://o11.ai",
+  "tagline": "One wallet for agents to access paid goods and services (\"OpenRouter for agent goods and services\")",
+  "status_notes": "PIVOT: YC W26 company originally launched as an AI agent inside Microsoft 365 / Google Workspace for finance teams (YC launch post still shows this). As of 2026-10-27 the site, YC profile one-liner and docs describe an agent wallet / paid-tool gateway: prepaid USD wallet, 'cards' (agent allowances), MCP/CLI/TS SDK/HTTP, ~8.4K tools. Very early: client v0.1.9 (checksum-verified tarball; npm latest still 0.1.4, 'npm publication pending'), YC team size 2. o11's own comparison posts (Oct 18 2026) say their evidence is a 'local implementation and audit', 'card funding is disabled in the inspected local configuration', and the /v1/purchase (goods checkout) endpoint says 'Card issuing is stubbed: no order or payment is submitted'. Every public tool contract is marked verification=captured_contract_only, liveAccountChecked=false. Catalog is aggregated: of 8,172 public contracts, 3,949 are sourced from Treg's GitHub catalog (superdesigndev/treg, a listed competitor), 1,463 from AgentMuxer, 2,760 o11-authored. Separate older product line 'o11 retention' (@o11/retention-cli) still exists.",
+  "founded": 2025,
+  "backers": [
+    "Y Combinator (W26; homepage banner: 'new funding led by Y Combinator')"
+  ],
+  "catalog": {
+    "tools": 8416,
+    "providers": 549,
+    "as_of": "2026-10-27",
+    "source": "https://o11.ai/",
+    "notes": "Homepage claim. Public contract index (catalogSha256 5c6f0296...) lists toolCount 8,172 with ~550 provider slugs; by source: treg 3,949 / o11 2,760 / agentmuxer 1,463. Largest providers: tikhub 1,900 (23%), dataforseo 458, anyapi 397, justoneapi 272, api-strale-io 197, x 173, scrapecreators 172, defillama 135, replicate 133. Homepage samples: OpenAI 8, Anthropic 1, Exa 15, Firecrawl 16, ElevenLabs 11, Replicate 133, Perplexity 8, Resend 1."
+  },
+  "categories": [
+    "Search & SEO",
+    "Enrichment",
+    "AI generation",
+    "Communications",
+    "Market data",
+    "Research",
+    "Maps & local",
+    "models",
+    "media",
+    "services"
+  ],
+  "pricing": {
+    "markup_pct": 0,
+    "platform_fee": null,
+    "per_call_min_usd": null,
+    "free_credit_usd": null,
+    "subscription": false,
+    "failed_calls_billed": true,
+    "notes": "YC profile: 'o11 has zero markup'. Tool contracts say 'No o11 service fee' / 'No o11 markup' and price at supplier PAYG rate (e.g. Adyntel page = 12,800 micros = $0.0128). No public pricing page (/pricing 404). Prepaid wallet credits; customer-mode (BYO account) calls do not debit o11 credits. Docs: 'Failed work can still incur supplier fees'; uncertain outcomes keep the hold until reconciled. First wallet of a new workspace 'can include a small free credit' (amount unpublished). Money in integer USD micros. subscription=false means no o11 subscription documented."
+  },
+  "payment_rails": [
+    "prepaid fiat (USD) wallet credits via in-app Billing (payment method not publicly documented)",
+    "BYO provider account (customer mode, billed by provider)",
+    "upstream x402/USDC settlement by o11 on caller's behalf for some AgentMuxer-sourced suppliers (agent never holds crypto)",
+    "goods purchase API (US/USD) - card issuing stubbed"
+  ],
+  "access": {
+    "remote_mcp": true,
+    "mcp_url": "https://go.o11.ai/mcp (card-scoped: https://go.o11.ai/mcp/cards/CARD_ID)",
+    "cli": true,
+    "cli_package": "@o11/sdk (commands o11-wallet, alias o11); installed via `curl -fsSL https://docs.o11.ai/downloads/install-wallet.ts | bun -` (v0.1.9); npm has only 0.1.4",
+    "rest_api": true,
+    "sdks": [
+      "TypeScript (@o11/sdk, Bun or Node 22+)"
+    ],
+    "skill_md": true,
+    "llms_txt": true
+  },
+  "byo_provider_accounts": true,
+  "spend_controls": {
+    "per_agent_caps": true,
+    "tool_allowlist": true,
+    "approval_flows": true,
+    "revocable_keys": true,
+    "notes": "Card = per-agent allowance (e.g. monthly), allowed tools/services, allowed connected accounts, max spend per call, write and recurring-purchase permissions. Budgets can be shared or nested (ancestor budgets); server-side reservation before dispatch; per-invoke maxCostMicros hard ceiling. awaiting_approval / request_manager_review states. Keys: replace/revoke, tool-only delegated keys, OAuth tokens 1h renewable up to 30 days. A key can't raise its own allowance."
+  },
+  "quote_before_call": true,
+  "receipts_audit_log": true,
+  "idempotency": true,
+  "open_source": {
+    "is_oss": false,
+    "license": "MIT (client SDK/CLI only); server closed",
+    "repo": "https://github.com/o11-ai/o11-wallet-sdk"
+  },
+  "self_host": false,
+  "setup_steps_to_first_call": [
+    "Install Bun (CLI prerequisite)",
+    "Run installer: curl -fsSL https://docs.o11.ai/downloads/install-wallet.ts | bun - (checksum-verified, private dir)",
+    "o11-wallet --profile NAME login --server https://go.o11.ai (email + 6-digit code in terminal, or Google)",
+    "Approve recommended access in browser Connect page (new account auto-gets wallet + 'Universal Card')",
+    "o11-wallet --profile NAME setup (verifies access, MCP bridge, cards without spending)",
+    "Add funds in Billing if balance is zero (small free credit may exist on first wallet)",
+    "o11-wallet search / discover \"capability\" -> inspect TOOL_ID",
+    "o11-wallet quote TOOL_ID --input input.json",
+    "o11-wallet invoke --input request.json (toolId, idempotencyKey, maxCostMicros) -> wait INVOCATION_ID",
+    "Alt: remote MCP client adds https://go.o11.ai/mcp, completes OAuth, calls cards/discover/quote/invoke (no CLI or key copy)"
+  ],
+  "public_endpoints_probed": [
+    {
+      "url": "https://go.o11.ai/mcp",
+      "method": "POST (JSON-RPC initialize, protocolVersion 2025-06-18)",
+      "status": 401,
+      "notes": "WWW-Authenticate: Bearer resource_metadata=\"https://go.o11.ai/.well-known/oauth-protected-resource/mcp\", scope=\"wallet:tools offline_access\"; body {\"error\":\"UNAUTHORIZED\",\"message\":\"Connect your agent to continue\"}"
+    },
+    {
+      "url": "https://go.o11.ai/mcp",
+      "method": "POST (tools/list)",
+      "status": 401,
+      "notes": "No unauthenticated tool listing"
+    },
+    {
+      "url": "https://go.o11.ai/mcp",
+      "method": "GET",
+      "status": 401,
+      "notes": "No persistent GET event stream per docs"
+    },
+    {
+      "url": "https://go.o11.ai/mcp/cards/00000000-0000-0000-0000-000000000000",
+      "method": "POST initialize",
+      "status": 401,
+      "notes": "Card-scoped MCP URL form"
+    },
+    {
+      "url": "https://go.o11.ai/v1/discover",
+      "method": "POST",
+      "status": 401,
+      "notes": "Catalog search requires card bearer key"
+    },
+    {
+      "url": "https://go.o11.ai/v1/search_items",
+      "method": "POST",
+      "status": 401,
+      "notes": "Task search requires auth"
+    },
+    {
+      "url": "https://go.o11.ai/v1/catalog, /v1/tools, /v1/providers",
+      "method": "GET",
+      "status": 401,
+      "notes": "Guessed paths; auth wall"
+    },
+    {
+      "url": "https://go.o11.ai/.well-known/oauth-protected-resource/mcp",
+      "method": "GET",
+      "status": 200,
+      "notes": "resource https://go.o11.ai/mcp; auth server https://go.o11.ai; scopes wallet:tools, offline_access"
+    },
+    {
+      "url": "https://go.o11.ai/.well-known/oauth-authorization-server",
+      "method": "GET",
+      "status": 200,
+      "notes": "authorize/token/register (dynamic client registration)/device_authorization endpoints under https://go.o11.ai/oauth/*"
+    },
+    {
+      "url": "https://go.o11.ai/v1/tool-reference/index.json",
+      "method": "GET",
+      "status": 200,
+      "notes": "PUBLIC unauthenticated catalog: 2.37 MB JSON, CORS *, toolCount 8172, each entry links to a per-tool contract JSON (request schema, auth templates, capturedPrice, source, verification). Mirror at https://docs.o11.ai/tool-reference/index.json (200)."
+    },
+    {
+      "url": "https://go.o11.ai/v1/tool-reference/07c9c2f8df430c5c10ce0e079ec250cd55aafea64fa483000ce922bcb40324ea.json",
+      "method": "GET",
+      "status": 200,
+      "notes": "Sample contract: source treg (superdesigndev/treg adyntel.yaml), capturedPrice 12800 micros, 'No o11 service fee', verification captured_contract_only"
+    },
+    {
+      "url": "https://docs.o11.ai/openapi.json",
+      "method": "GET",
+      "status": 200,
+      "notes": "OpenAPI 3.1, 35 POST /v1/* operations, cardKey bearer security; no unauthenticated operations"
+    },
+    {
+      "url": "https://o11.ai/pricing",
+      "method": "GET",
+      "status": 404,
+      "notes": "No pricing page"
+    },
+    {
+      "url": "https://o11.ai/llms.txt",
+      "method": "GET",
+      "status": 200,
+      "notes": "Also https://docs.o11.ai/llms.txt and llms-full.txt (64 KB)"
+    }
+  ],
+  "strengths": [
+    "Zero markup claimed; per-tool contracts state supplier PAYG rate and 'No o11 service fee'",
+    "Strong spend-control model: per-agent cards, tool allowlists, nested/shared budgets, per-call hard ceiling, server-side reservations, approval states, write/recurring consent flags",
+    "Quote -> invoke -> receipt lifecycle with idempotency keys, run IDs for task cost roll-up, cancel, history, disputes/feedback API",
+    "Both wallet-funded and BYO provider accounts per call (explicit credentialMode, no silent fallback)",
+    "Every transport: remote MCP with OAuth (DCR + device flow), stdio MCP via CLI, TS SDK, plain HTTP, skill.md, llms.txt, OpenAPI 3.1",
+    "Public unauthenticated contract index for ~8.2K tools (useful for benchmarking catalog breadth)",
+    "Bridges x402-only suppliers behind a fiat wallet (o11 handles the 402 challenge, caps at caller max)",
+    "Very agent-oriented, detailed skill.md guidance for recovery and budget handling"
+  ],
+  "weaknesses": [
+    "Very early: client 0.1.x, npm publish pending (npm latest 0.1.4 vs docs 0.1.9), 2-person team, CLI requires Bun",
+    "Catalog breadth largely aggregated from others: ~48% of public contracts sourced from Treg's GitHub catalog (whose license restricts hosted third-party use without written permission; o11's authorization status unknown), ~18% from AgentMuxer; 23% is one provider (TikHub)",
+    "Every contract is 'captured_contract_only'; o11's own blogs say evidence is local/offline and card funding was disabled in the inspected configuration; most output schemas not captured",
+    "No public pricing page, free credit amount unpublished, funding methods not documented",
+    "Goods purchase (/v1/purchase) is stubbed",
+    "No unauthenticated catalog search API or MCP tools/list; discovery requires account + OAuth",
+    "Failed calls can still incur supplier fees",
+    "Not self-hostable; server closed source",
+    "Brand confusion with prior M365/finance AI product and o11 retention CLI sharing the `o11` command"
+  ],
+  "sources": [
+    {
+      "claim": "Tagline, 8,416 tools / 549 providers, categories, cards with allowance, MCP/API/SDK, activity log, BYO accounts, revocable keys",
+      "url": "https://o11.ai/"
+    },
+    {
+      "claim": "Homepage title 'OpenRouter for agent goods and services'; banner 'new funding led by Y Combinator'",
+      "url": "https://o11.ai/"
+    },
+    {
+      "claim": "YC W26, founded 2025, team size 2, founders Aryah Oztanir & Ajay Misra, primary partner Jared Friedman, one-liner 'OpenRouter wallet for paid goods and services', 'zero markup'; original launch post was M365/Workspace AI agent",
+      "url": "https://www.ycombinator.com/companies/o11"
+    },
+    {
+      "claim": "wallet-origin https://go.o11.ai, minimum CLI 0.1.7, quote/invoke/receipt/idempotency workflow, platform vs customer mode",
+      "url": "https://o11.ai/skill.md"
+    },
+    {
+      "claim": "API operations, MCP remote URL YOUR_WALLET_ORIGIN/mcp, MCP 2025-06-18 JSON-RPC over POST, holds/charges, 'Failed work can still incur supplier fees', purchase endpoint 'Card issuing is stubbed', OAuth tokens 1h renewable 30 days, nested budgets & approvals",
+      "url": "https://docs.o11.ai/llms-full.txt"
+    },
+    {
+      "claim": "Card-scoped MCP URL O11_BASE_URL/mcp/cards/CARD_ID; device flow; first wallet can include small free credit",
+      "url": "https://docs.o11.ai/skills/connection/skill.md"
+    },
+    {
+      "claim": "CLI install via bun installer, v0.1.9, npm publication pending, package @o11/sdk, command o11-wallet",
+      "url": "https://docs.o11.ai/wallet-cli/index.md"
+    },
+    {
+      "claim": "Archives up to o11-sdk-0.1.9.tgz",
+      "url": "https://docs.o11.ai/downloads/checksums.json"
+    },
+    {
+      "claim": "npm @o11/sdk latest 0.1.4, MIT, repo o11-ai/o11-wallet-sdk",
+      "url": "https://registry.npmjs.org/@o11/sdk"
+    },
+    {
+      "claim": "GitHub org o11-ai: o11-wallet-sdk (MIT), o11-sdk (retention tracking)",
+      "url": "https://github.com/o11-ai"
+    },
+    {
+      "claim": "Public contract index: toolCount 8172, sources treg/o11/agentmuxer, provider distribution",
+      "url": "https://go.o11.ai/v1/tool-reference/index.json"
+    },
+    {
+      "claim": "Treg-sourced contract, 'No o11 service fee', captured_contract_only",
+      "url": "https://go.o11.ai/v1/tool-reference/07c9c2f8df430c5c10ce0e079ec250cd55aafea64fa483000ce922bcb40324ea.json"
+    },
+    {
+      "claim": "Exa contract: 'No o11 markup'",
+      "url": "https://go.o11.ai/v1/tool-reference/de5c2c43d90476ee4f06cd080a8caf11c1c35d483deac9a62e10b8450ef91994.json"
+    },
+    {
+      "claim": "x402 supplier contract: 'Live x402 challenge is checked against the caller's maximum', supplier-protocol:x402",
+      "url": "https://go.o11.ai/v1/tool-reference/0ab8b974bc915a1deeefc17f5cb84875c0d04db99204ce49e5dabbaa0c77af03.json"
+    },
+    {
+      "claim": "AgentMuxer workflow contract: 'sign the workspace wallet proof'",
+      "url": "https://go.o11.ai/v1/tool-reference/d2c50a471106e32e988e584a6a11916bff78f36cb312e4c1d93b7a7affe8f943.json"
+    },
+    {
+      "claim": "Treg repo license: Apache-2.0 + additional term prohibiting hosted third-party service without written authorization",
+      "url": "https://github.com/superdesigndev/treg"
+    },
+    {
+      "claim": "o11 self-described 'fiat tool layer'; does not claim any protocol support",
+      "url": "https://o11.ai/blog/x402-vs-mpp-vs-acp-vs-ap2"
+    },
+    {
+      "claim": "Comparison posts are o11-published doc reviews; 'card funding is disabled in the inspected local configuration'",
+      "url": "https://o11.ai/blog/o11-vs-composio-instant-vs-nevermined"
+    },
+    {
+      "claim": "MCP 401 with WWW-Authenticate resource metadata; OAuth metadata endpoints",
+      "url": "https://go.o11.ai/.well-known/oauth-protected-resource/mcp"
+    },
+    {
+      "claim": "OpenAPI 3.1 with 35 operations",
+      "url": "https://docs.o11.ai/openapi.json"
+    },
+    {
+      "claim": "Providers page is a 'Sell to agents on o11' partner intake form",
+      "url": "https://o11.ai/providers"
+    }
+  ]
+}

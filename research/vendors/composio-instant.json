@@ -1,0 +1,125 @@
+{
+ "name": "Composio Instant (Composio)",
+ "url": "https://composio.dev",
+ "tagline": "Wallet-funded paid tools (search, leads, media, scraping) inside Composio's 1,500+ app OAuth/tool platform",
+ "status_notes": "Active. Instant launched Oct 8, 2026; docs label Instant Tools 'Experimental' and say to contact support if the project setting is unavailable. o11's own comparison posts (vendor content, biased) correctly cite Composio docs that there is no built-in per-Session dollar cap.",
+ "founded": null,
+ "backers": null,
+ "catalog": {
+  "tools": 2001,
+  "providers": 79,
+  "as_of": "2026-10-27",
+  "source": "https://composio.dev/pricing"
+ },
+ "categories": [
+  "leads/enrichment",
+  "web search",
+  "scraping",
+  "SEO data",
+  "video/image/voice gen",
+  "transcription",
+  "document OCR",
+  "financial/market data",
+  "sports/weather data",
+  "plus 1,500+ OAuth connected apps"
+ ],
+ "pricing": {
+  "markup_pct": 0,
+  "platform_fee": "Regular Composio tool-call charges apply on top (Hobby 100,000 tool calls/mo free; Pro $29/mo)",
+  "per_call_min_usd": null,
+  "free_credit_usd": 2,
+  "subscription": "Hobby $0; Pro $29/mo incl. $29 usage credit (no rollover); Enterprise custom",
+  "failed_calls_billed": false,
+  "notes": "Provider charges come from Composio balance 'with 0% markup'. Catalog count parsed from per-toolkit 'N Instant tools' headings on the pricing page (79 toolkits summing to ~2,001 tools); launch post said 100+ paid tools. Many rates shown as discounted ('88% off')."
+ },
+ "payment_rails": [
+  "prepaid USD balance (card via Composio Billing)"
+ ],
+ "access": {
+  "remote_mcp": true,
+  "mcp_url": null,
+  "cli": true,
+  "cli_package": null,
+  "rest_api": true,
+  "sdks": [
+   "python",
+   "typescript"
+  ],
+  "skill_md": true,
+  "llms_txt": true
+ },
+ "byo_provider_accounts": true,
+ "spend_controls": {
+  "per_agent_caps": false,
+  "tool_allowlist": true,
+  "approval_flows": false,
+  "revocable_keys": null,
+  "notes": "Session/project toolkit+tool enable/disable filters; instant=false kill switch. Docs: 'There is no built-in dollar cap'; prepaid balance 'is not a hard cap either, because balance checks are asynchronous'. Human approval only as an application-side executor pattern. Balance exhaustion returns HTTP 402."
+ },
+ "quote_before_call": false,
+ "receipts_audit_log": true,
+ "idempotency": null,
+ "open_source": {
+  "is_oss": false,
+  "license": "MIT (client SDK only)",
+  "repo": "https://github.com/ComposioHQ/composio"
+ },
+ "self_host": null,
+ "setup_steps_to_first_call": [
+  "Sign up at composio.dev and get COMPOSIO_API_KEY",
+  "Turn on Instant Toolkits in project Settings (off by default; experimental access may require contacting support)",
+  "Check/fund prepaid balance in Billing ($2 starter wallet)",
+  "Create a Session with instant enabled (optionally return_instant_charge)",
+  "Execute tool (session.execute or via session MCP endpoint)"
+ ],
+ "public_endpoints_probed": [
+  {
+   "url": "https://composio.dev/pricing",
+   "result": "200; pricing page lists Instant tools per toolkit with rates"
+  },
+  {
+   "url": "https://docs.composio.dev/llms.txt",
+   "result": "200"
+  }
+ ],
+ "strengths": [
+  "Largest paid catalog among hosted aggregators by tool count (~2,000 Instant tools) plus 1,500+ OAuth apps in same session",
+  "Own connected accounts take precedence automatically; mixed BYO + wallet in one session",
+  "0% markup on provider charges; failed calls free",
+  "Per-call instant_charge in responses and execution logs with credential_source",
+  "Massive distribution (claims 1B+ tool calls/month)"
+ ],
+ "weaknesses": [
+  "No built-in dollar budget per Session/agent; balance not a hard cap (async checks)",
+  "Published prices are strings, not machine-readable max cost \u2014 no true quote",
+  "Instant covers only providers' 'core actions'; no arbitrary proxy; excludes account-history tools",
+  "Feature still Experimental / gated",
+  "Regular tool-call fees on top of provider cost"
+ ],
+ "sources": [
+  {
+   "claim": "Launched Oct 8, 2026; 100+ paid tools; $2 starter wallet; Pro $29 credit; failed calls free; own accounts first",
+   "url": "https://composio.dev/blog/composio-instant"
+  },
+  {
+   "claim": "No built-in dollar cap; balance not a hard cap; tool/toolkit filters; account precedence; HTTP 402 on exhausted balance; Experimental",
+   "url": "https://docs.composio.dev/docs/instant-tools"
+  },
+  {
+   "claim": "0% markup; regular tool-call charges; Hobby/Pro pricing; ~79 toolkits / ~2,001 Instant tools listed",
+   "url": "https://composio.dev/pricing"
+  },
+  {
+   "claim": "SDK MIT license",
+   "url": "https://github.com/ComposioHQ/composio"
+  },
+  {
+   "claim": "llms.txt exists",
+   "url": "https://docs.composio.dev/llms.txt"
+  },
+  {
+   "claim": "o11 comparison (vendor content) summarizing Composio Instant controls",
+   "url": "https://o11.ai/blog/o11-vs-composio-instant-vs-nevermined"
+  }
+ ]
+}
